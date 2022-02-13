@@ -1,0 +1,9 @@
+https://www.bilibili.com/video/BV1r4411r7au?p=34
+跟着34集做了集成Mybatis Generator的操作后发现程序无法再处理前端传回的请求
+通过测试/callback请求，发现根本没有响应，后台不报错，打断点程序是不进入的。。。
+在主程序入口处，视频中使用@MapperScan开启mapper路径扫描，但是我用了之后发现访问主页其中的网页直接为空
+后来加上@ComponentScan后才出现导航栏，但是请求还是无法被处理。
+
+    —— 最终原因，拦截器处直接拦截了请求，所以专门的请求无法处理
+
+mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
